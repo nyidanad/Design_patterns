@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnSale {
-    private String productName;
-    private int price;
+    private Stock stock;
+    private int salePrice;
     List<Subscriber> subscribers = new ArrayList<Subscriber>();
 
-    public OnSale(String productName, int price) {
-        this.productName = productName;
-        this.price = price;
+    public OnSale(Stock stock) {
+        this.stock = stock;
     }
 
     public void subscribe(Subscriber subscriber) {
@@ -27,15 +26,16 @@ public class OnSale {
         }
     }
 
-    public String getProductName() {
-        return productName;
+    public int getSalePrice() {
+        return salePrice;
     }
 
-    public int getPrice() {
-        return price;
+    public void setSalePrice(int salePrice) {
+        this.salePrice = salePrice;
+        notifySubscriber();
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public Stock getStock() {
+        return stock;
     }
 }

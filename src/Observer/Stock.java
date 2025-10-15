@@ -6,11 +6,13 @@ import java.util.List;
 public class Stock {
     private final String productName;
     private int quantity;
+    private int price;
     List<Subscriber> subscribers = new ArrayList<Subscriber>();
 
-    public Stock(String productName, int quantity) {
+    public Stock(String productName, int quantity, int price) {
         this.productName = productName;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public void subscribe(Subscriber subscriber) {
@@ -37,5 +39,10 @@ public class Stock {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        notifySubscriber();
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
