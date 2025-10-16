@@ -1,15 +1,17 @@
 package Observer;
 
+import Factory.Products.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OnSale {
-    private Stock stock;
+    private final Product product;
     private int salePrice;
     List<Subscriber> subscribers = new ArrayList<Subscriber>();
 
-    public OnSale(Stock stock) {
-        this.stock = stock;
+    public OnSale(Product product) {
+        this.product = product;
     }
 
     public void subscribe(Subscriber subscriber) {
@@ -32,10 +34,11 @@ public class OnSale {
 
     public void setSalePrice(int salePrice) {
         this.salePrice = salePrice;
+        this.product.setPrice(salePrice);
         notifySubscriber();
     }
 
-    public Stock getStock() {
-        return stock;
+    public Product getProduct() {
+        return product;
     }
 }
