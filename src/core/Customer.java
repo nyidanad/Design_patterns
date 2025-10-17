@@ -1,3 +1,5 @@
+package core;
+
 import Factory.Products.Product;
 import Observer.OnSale;
 import Observer.Subscriber;
@@ -8,11 +10,13 @@ import java.util.List;
 public class Customer implements Subscriber {
     private final String name;
     private final int age;
+    private int money;
     List<Product> order = new ArrayList<Product>();
 
-    public Customer(String name, int age) {
+    public Customer(String name, int age, int money) {
         this.name = name;
         this.age = age;
+        this.money = money;
     }
 
     public void addProduct(Product product) {
@@ -38,7 +42,7 @@ public class Customer implements Subscriber {
 
     @Override
     public void update(OnSale onsale) {
-        System.out.println("🔔 " + name + ":\t" + onsale.getProduct().getProductName() + " is now on sale for " + onsale.getSalePrice() +"Ft!");
+        System.out.println("$ ~ " + onsale.getProduct().getProductName() + " is now on sale for " + onsale.getSalePrice() +"Ft!");
     }
 
     public String getName() {
@@ -47,5 +51,13 @@ public class Customer implements Subscriber {
 
     public int getAge() {
         return age;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
