@@ -3,6 +3,7 @@ package utils;
 import Factory.Products.Product;
 import core.Customer;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,10 +28,9 @@ public class Screens {
         return new Customer(name, age, money);
     }
 
-    public void screenHome(Customer customer) {
+    public void screenHome() {
         Terminal.clear();
         Terminal.title("HOME");
-        System.out.println("Wallet: " + customer.getMoney() + "Ft\n");
 
         System.out.println("[1] Add");
         System.out.println("[2] Remove");
@@ -52,6 +52,31 @@ public class Screens {
         choice = input.nextInt();
 
         customer.addProduct(products.get(choice-1));
-        screenHome(customer);
+        screenHome();
+    }
+
+    public void removeScreen(Customer customer) {
+        Terminal.clear();
+        Terminal.title("REMOVE FROM ORDER");
+
+        Scanner key = new Scanner(System.in);
+
+        if (customer.getOrder().isEmpty()) {
+            System.out.println("No products in order.");
+            System.out.println("\nPress any key to go back.");
+            key.nextLine();
+        }
+        else {
+            for (int i = 0; i < customer.getOrder().size(); i++) {
+                System.out.println("[" + (i+1) + "] " + customer.getOrder().get(i).getProductName() + " (" + customer.getOrder().get(i).getPrice() + ")");
+            }
+
+            System.out.print("\nChoose a product no.: ");
+            int choice = input.nextInt();
+
+            customer.removeProduct(customer.getOrder().get(choice-1));
+        }
+
+        screenHome();
     }
 }

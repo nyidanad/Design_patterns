@@ -60,4 +60,8 @@ public class Customer implements Subscriber {
     public void setMoney(int money) {
         this.money = money;
     }
+
+    public List<Product> getOrder() {
+        return order;
+    }
 }
