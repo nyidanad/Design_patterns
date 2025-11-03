@@ -21,15 +21,18 @@ public class Main {
         screen.screenHome();
 
         // FACTORIES
-        ProductFactory factory1 = new MeatFactory("Beef", 8000, 0);
-        ProductFactory factory2 = new BeverageFactory("Miller", 450, 25);
-        ProductFactory factory3 = new SideFactory("French fries", 780, 16);
+        ProductFactory factory1 = new MeatFactory();
+        ProductFactory factory2 = new BeverageFactory();
+        ProductFactory factory3 = new SideFactory();
 
         // PRODUCTS
         List<Product> products = new ArrayList<Product>();
-        products.add(factory1.create());
-        products.add(factory2.create());
-        products.add(factory3.create());
+        products.add(factory1.create("Steak", 8000, 10));
+        products.add(factory1.create("Chicken Breast", 1300, 20));
+        products.add(factory2.create("Miller", 480, 15));
+        products.add(factory2.create("Coca Cola", 250, 10));
+        products.add(factory3.create("French fries", 500, 15));
+        products.add(factory3.create("Rice", 300, 50));
 
         // ON SALE PRODUCTS
         OnSale Beef_sale = new OnSale(products.get(0));
